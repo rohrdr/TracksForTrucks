@@ -46,7 +46,7 @@ def get_model_input(message, models_list):
         if value == 'STOP':
             return -1, log
 
-        # check if this brand has already been taken care of
+        # check if this model has already been taken care of
         if value.lower() in models_list:
             print("It looks like we've already taken care of {}".format(value))
             print("In case you made a mistake earlier and there aren't more models in your fleet than {}, please type STOP".format(models_list))
