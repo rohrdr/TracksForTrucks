@@ -8,11 +8,13 @@ def get_input(message, func, minimum, maximum):
 
     # get input until a valid input is given
     valid = False
+    log = []
     while(not valid):
         value = input(message)
+        log.append(value)
         valid, value = check(func, value, minimum, maximum)
 
-    return value
+    return value, log
 
 
 # check validity of the input
