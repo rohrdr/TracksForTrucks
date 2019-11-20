@@ -21,3 +21,11 @@ engine_size = "What is the engine size of model {} of brand {} in litres?\n"
 number_axels = "How many axles does model {} of brand {} have?\n"
 mass = "What's the weight of model {} of brand {}?\n"
 maximum_load = "What's the max load of model {} of brand {}?\n"
+
+
+# different yes messages
+yes = ['yes', 'y', 'ya', 'yeah', 'ja', 'yep', 'ye']
+
+# different brands
+brands = ['volvo', 'man', 'scania', 'daimler', 'iveco']
+brands_dict = {'volvo': 'Volvo', 'man': 'MAN', 'scania': 'Scania', 'daimler': 'Daimler', 'iveco': 'IVECO'}

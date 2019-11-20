@@ -1,5 +1,5 @@
 from json import dump
-from messages import *
+from strings import *
 from intervals import *
 from utils import *
 
@@ -35,7 +35,7 @@ def bot():
     # check if they own trucks
     print(great.format(customercompany))
     own_trucks = input(any_trucks)
-    if own_trucks.lower() != 'yes':
+    if own_trucks.lower() not in yes:
         print(no_trucks.format(customername))
         # log input and save it
         log['own_trucks'] = own_trucks
@@ -52,13 +52,19 @@ def bot():
     print(thanks.format(customername))
     # initialize the dictionary for data storage
     trucks = {}
+    brands_list = []
 
     # loop over brands
     for i in range(number_of_brands):
         # get the brand name and initialize new dictionary
-        brand = input(name_brand.format(i+1, ith(i+1)))
+        brand, log_brand = get_brand_input(name_brand.format(i+1, ith(i+1)), brands_list)
+        if brand == -1:
+            log['STOP'] = log_brand
+            break
+        brands_list.append(brand.lower())
         trucks[brand] = {}
         log[brand] = {}
+        log[brand]['brand_conversation'] = log_brand
 
         # get the number of models
         nmodels, log_nmodels = get_input(number_models.format(brand), *nmodels_tmm)
@@ -97,6 +103,8 @@ def bot():
             log[brand][model]['axles'] = log_axles
             log[brand][model]['weight'] = log_weight
             log[brand][model]['max_load'] = log_max_load
+
+    print("Thanks a lot {}! Goodbye".format(customername))
 
     # save the dictionary to file
     f = open('{}_{}.json'.format(customercompany, customername), 'w')

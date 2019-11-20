@@ -3,6 +3,7 @@ from sys import maxsize
 ###
 ### type, min and max of data
 ###
+brand_tmm = [str, 0, 0]
 number_tmm = [int, 0, maxsize]
 number_brands_tmm = [int, 0, maxsize]
 nmodels_tmm = [int, 0, maxsize]
