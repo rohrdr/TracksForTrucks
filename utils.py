@@ -12,7 +12,7 @@ def get_brand_input(message, brands_list):
     valid = False
     log = []
     while(not valid):
-        value = input(message)
+        value = input(message).strip()
         log.append(value)
         if value == 'STOP':
             return -1, log
@@ -40,7 +40,7 @@ def get_model_input(message, models_list):
     valid = False
     log = []
     while(not valid):
-        value = input(message)
+        value = input(message).strip()
         log.append(value)
         valid = True
         if value == 'STOP':
@@ -61,7 +61,7 @@ def get_input(message, func, minimum, maximum):
     valid = False
     log = []
     while(not valid):
-        value = input(message)
+        value = input(message).strip()
         log.append(value)
         valid, value = check(func, value, minimum, maximum)
 

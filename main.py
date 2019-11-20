@@ -25,8 +25,8 @@ def bot():
     log = {}
 
     # get customer name and company name
-    customername = input(name)
-    customercompany = input(company.format(customername))
+    customername = input(name).strip()
+    customercompany = input(company.format(customername)).strip()
 
     # log the input
     log['customername'] = customername
@@ -34,7 +34,7 @@ def bot():
 
     # check if they own trucks
     print(great.format(customercompany))
-    own_trucks = input(any_trucks)
+    own_trucks = input(any_trucks).strip()
     if own_trucks.lower() not in yes:
         print(no_trucks.format(customername))
         # log input and save it
@@ -81,8 +81,8 @@ def bot():
             # get model name
             model, log_model = get_model_input(name_model.format(j+1, ith(j+1)), models_list)
             # check if user made a mistake earlier
-            if brand == -1:
-                log['STOP'] = log_model
+            if model == -1:
+                log[brand]['STOP'] = log_model
                 break
             models_list.append(model)
 
