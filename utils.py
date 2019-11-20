@@ -32,6 +32,28 @@ def get_brand_input(message, brands_list):
 
     return value, log
 
+
+# get and check the model input
+def get_model_input(message, models_list):
+
+    # get input until valid input is given
+    valid = False
+    log = []
+    while(not valid):
+        value = input(message)
+        log.append(value)
+        valid = True
+        if value == 'STOP':
+            return -1, log
+
+        # check if this brand has already been taken care of
+        if value.lower() in models_list:
+            print("It looks like we've already taken care of {}".format(value))
+            print("In case you made a mistake earlier and there aren't more models in your fleet than {}, please type STOP".format(models_list))
+            valid = False
+
+    return value, log
+
 # get the input
 def get_input(message, func, minimum, maximum):
 

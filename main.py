@@ -75,10 +75,17 @@ def bot():
         # log input
         log[brand]['nmodels'] = log_nmodels
 
+        models_list = []
         # loop over the models
         for j in range(nmodels):
             # get model name
-            model = input(name_model.format(j+1, ith(j+1)))
+            model, log_model = get_model_input(name_model.format(j+1, ith(j+1)), models_list)
+            # check if user made a mistake earlier
+            if brand == -1:
+                log['STOP'] = log_model
+                break
+            models_list.append(model)
+
             model_brand = [model, brand]
             # get number of trucks for given model and brand
             number, log_number = get_input(number_model.format(*model_brand), *number_tmm)
@@ -93,6 +100,7 @@ def bot():
 
             # save all the data in a dictionary
             trucks[brand][model] = {}
+            trucks[brand][model]['model_log'] = log_model
             trucks[brand][model]['number'] = number
             trucks[brand][model]['engine'] = engine
             trucks[brand][model]['axles'] = axles
@@ -101,6 +109,7 @@ def bot():
 
             # log all conversations
             log[brand][model] = {}
+            log[brand][model]['model_conversation'] = log_model
             log[brand][model]['number'] = log_number
             log[brand][model]['engine'] = log_engine
             log[brand][model]['axles'] = log_axles
