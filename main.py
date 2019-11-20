@@ -56,11 +56,14 @@ def bot():
 
     # loop over brands
     for i in range(number_of_brands):
-        # get the brand name and initialize new dictionary
+        # get the brand name
         brand, log_brand = get_brand_input(name_brand.format(i+1, ith(i+1)), brands_list)
+        # check if user made a mistake earlier
         if brand == -1:
             log['STOP'] = log_brand
             break
+
+        # do some logging
         brands_list.append(brand.lower())
         trucks[brand] = {}
         log[brand] = {}
